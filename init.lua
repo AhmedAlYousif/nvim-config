@@ -6,6 +6,5 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.wo.number = true
 
-
 require("config.lazy")
 require("config.keybindings")
