@@ -16,6 +16,10 @@ local keybindings = {
 	{ mode = 'i', key = '<C-k>',      description = 'Up move while in insert mode',      command = '<Up>' },
 	{ mode = 'i', key = "<C-'>",      description = 'Move to End while in insert mode',  command = '<End>' },
 	{ mode = 'i', key = "<C-g>",      description = 'Move to Home while in insert mode', command = '<Home>' },
+	{ mode = 'n', key = "<A-j>",      description = 'Move current line down',            command = ':m .+1<CR>==' },
+	{ mode = 'n', key = "<A-k>",      description = 'Move current line down',            command = ':m .-2<CR>==' },
+	{ mode = 'v', key = "<A-j>",      description = 'Move current line down',            command = ":m '>+1<CR>gv=gv" },
+	{ mode = 'v', key = "<A-k>",      description = 'Move current line down',            command = ":m '<-2<CR>gv=gv" },
 }
 
 for _, binding in ipairs(keybindings) do
