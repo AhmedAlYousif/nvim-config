@@ -20,6 +20,7 @@ local keybindings = {
 	{ mode = 'n', key = "<A-k>",      description = 'Move current line down',            command = ':m .-2<CR>==' },
 	{ mode = 'v', key = "<A-j>",      description = 'Move current line down',            command = ":m '>+1<CR>gv=gv" },
 	{ mode = 'v', key = "<A-k>",      description = 'Move current line down',            command = ":m '<-2<CR>gv=gv" },
+	{ mode = 'n', key = "<Leader>d",  description = 'Open Diagnostic',                   command = vim.diagnostic.open_float },
 }
 
 for _, binding in ipairs(keybindings) do
