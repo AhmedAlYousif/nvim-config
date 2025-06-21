@@ -15,7 +15,7 @@ return {
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
 		mason_lspconfig.setup({
-			ensure_installed = { "lua_ls" },
+			ensure_installed = { "lua_ls", "gopls" },
 			handlers = {
 				function(server_name)
 					require("lspconfig")[server_name].setup({

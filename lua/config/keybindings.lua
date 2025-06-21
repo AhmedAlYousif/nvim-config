@@ -1,3 +1,4 @@
+local builtin = require("telescope.builtin")
 local keybindings = {
 	{ mode = 'n', key = '<C-h>',      description = 'Move focus to the left split',      command = '<C-w>h' },
 	{ mode = 'n', key = '<C-l>',      description = 'Move focus to the right split',     command = '<C-w>l' },
@@ -21,6 +22,13 @@ local keybindings = {
 	{ mode = 'v', key = "<A-j>",      description = 'Move current line down',            command = ":m '>+1<CR>gv=gv" },
 	{ mode = 'v', key = "<A-k>",      description = 'Move current line down',            command = ":m '<-2<CR>gv=gv" },
 	{ mode = 'n', key = "<Leader>d",  description = 'Open Diagnostic',                   command = vim.diagnostic.open_float },
+	{ mode = 'n', key = "<Leader>f",  description = 'Find files',                        command = builtin.find_files },
+	{ mode = 'n', key = "<Leader>g",  description = 'Live grep',                         command = builtin.live_grep },
+	{ mode = 'n', key = "gd",         description = 'Go to definition',                  command = vim.lsp.buf.definition },
+	{ mode = 'n', key = "gD",         description = 'Go to declaration',                 command = vim.lsp.buf.declaration },
+	{ mode = 'n', key = "gr",         description = 'Go to references',                  command = vim.lsp.buf.references },
+	{ mode = 'n', key = "gi",         description = 'Go to implementation',              command = vim.lsp.buf.implementation },
+	{ mode = 'n', key = "K",          description = 'Hover',                             command = vim.lsp.buf.hover },
 }
 
 for _, binding in ipairs(keybindings) do
