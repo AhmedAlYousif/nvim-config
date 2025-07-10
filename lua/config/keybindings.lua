@@ -45,3 +45,9 @@ vim.keymap.set('n', '<Leader>e', function()
 		tree_api.tree.open()
 	end
 end, { noremap = true, silent = true, desc = 'Toggle file explorer' })
+
+
+vim.keymap.set('n', '<Leader>o', function()
+	local cwd = vim.fn.getcwd()
+	os.execute(string.format("tmux split-window -h -c '%s' 'opencode .'", cwd))
+end, { noremap = true, desc = 'Open opencode in vertical split' })
