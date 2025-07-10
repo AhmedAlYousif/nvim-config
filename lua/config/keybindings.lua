@@ -29,6 +29,7 @@ local keybindings = {
 	{ mode = 'n', key = "gr",         description = 'Go to references',                  command = vim.lsp.buf.references },
 	{ mode = 'n', key = "gi",         description = 'Go to implementation',              command = vim.lsp.buf.implementation },
 	{ mode = 'n', key = "K",          description = 'Hover',                             command = vim.lsp.buf.hover },
+	{ mode = 'n', key = "<C-f>",      description = 'Open new tmux session',             command = "<cmd>silent !tmux neww tmux-sessionizer<CR>" },
 }
 
 for _, binding in ipairs(keybindings) do
