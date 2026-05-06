@@ -7,25 +7,22 @@ return {
 	},
 	config = function()
 		require("mason").setup()
-
-		local lspconfig = require("lspconfig")
 		local mason_lspconfig = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 		local capabilities = cmp_nvim_lsp.default_capabilities()
-
+		local servers = { "lua_ls", "gopls", "clangd" }
 		mason_lspconfig.setup({
-			ensure_installed = { "lua_ls", "gopls" },
-			handlers = {
-				function(server_name)
-					require("lspconfig")[server_name].setup({
-						capabilities = capabilities,
-					})
-				end,
-			},
+			ensure_installed = servers,
+			automatic_enable = false, -- we'll enable ourselves after applying config
 		})
-
-		lspconfig.lua_ls.setup({
+		-- Apply shared capabilities to all servers
+		for _, server in ipairs(servers) do
+			vim.lsp.config(server, {
+				capabilities = capabilities,
+			})
+		end
+		-- Server-specific override
+		vim.lsp.config("lua_ls", {
 			settings = {
 				Lua = {
 					runtime = {
@@ -41,8 +38,12 @@ return {
 					telemetry = {
 						enable = false,
 					},
-				}
-			}
+				},
+			},
 		})
+		-- Enable configs
+		for _, server in ipairs(servers) do
+			vim.lsp.enable(server)
+		end
 	end,
 }

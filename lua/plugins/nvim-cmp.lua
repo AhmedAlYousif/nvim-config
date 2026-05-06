@@ -18,22 +18,21 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
-			sources = {
+			sources = cmp.config.sources({
 				{ name = 'nvim_lsp' },
 				{ name = 'luasnip' },
-			},
-			{
+			}, {
 				{ name = 'buffer' },
 				{ name = 'path' },
-			},
+			}),
 			mapping = cmp.mapping.preset.insert({
 				['<C-Space>'] = cmp.mapping.complete(),
 				['<CR>'] = cmp.mapping.confirm({ select = true }),
 				['<Tab>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-					elseif luasnip and luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jumb()
+					elseif luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump()
 					else
 						fallback()
 					end
@@ -41,8 +40,8 @@ return {
 				['<S-Tab>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
-					elseif luasnip.jumbable(-1) then
-						luasnip.jumb(-1)
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
 					else
 						fallback()
 					end
